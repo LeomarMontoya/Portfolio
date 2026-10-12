@@ -9,42 +9,31 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
-        
-        body {
-            font-family: 'Inter', sans-serif;
-        }
-        
-        .smooth-transition {
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        
+
+        body { font-family: 'Inter', sans-serif; }
+
+        .smooth-transition { transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+
         .card-hover:hover {
             transform: translateY(-8px);
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
         }
-        
+
         .fade-in {
             opacity: 0;
             transform: translateY(30px);
             transition: opacity 0.8s ease, transform 0.8s ease;
         }
-        
-        .fade-in.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        
+        .fade-in.visible { opacity: 1; transform: translateY(0); }
+
         .gradient-text {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
-        
-        .nav-link {
-            position: relative;
-        }
-        
+
+        .nav-link { position: relative; }
         .nav-link::after {
             content: '';
             position: absolute;
@@ -55,25 +44,34 @@
             background: #667eea;
             transition: width 0.3s ease;
         }
-        
         .nav-link:hover::after,
-        .nav-link.active::after {
-            width: 100%;
-        }
-        
-        .skill-progress {
-            transform: scaleX(0);
-            transform-origin: left;
-            transition: transform 1.2s ease;
-        }
-        
-        .skill-progress.animate {
-            transform: scaleX(1);
-        }
+        .nav-link.active::after { width: 100%; }
 
-        .profile-img {
-          transition: opacity 0.4s ease-in-out;
+        .profile-img { transition: opacity 0.4s ease-in-out; }
+
+        /* Timeline */
+        .timeline { position: relative; }
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 11px;
+            top: 8px;
+            bottom: 8px;
+            width: 2px;
+            background: linear-gradient(to bottom, #667eea, #764ba2);
+            opacity: 0.35;
         }
+        .timeline-dot {
+            position: absolute;
+            left: 0;
+            top: 28px;
+            width: 24px;
+            height: 24px;
+            border-radius: 9999px;
+            background: #fff;
+            border: 4px solid #667eea;
+        }
+        .timeline-dot.current { border-color: #10b981; }
     </style>
 </head>
 <body class="bg-white text-gray-800">
@@ -87,11 +85,12 @@
                 <div class="hidden md:flex space-x-8">
                     <a href="#home" class="nav-link text-gray-600 hover:text-gray-900 smooth-transition text-sm font-medium">Home</a>
                     <a href="#about" class="nav-link text-gray-600 hover:text-gray-900 smooth-transition text-sm font-medium">About</a>
+                    <a href="#experience" class="nav-link text-gray-600 hover:text-gray-900 smooth-transition text-sm font-medium">Experience</a>
                     <a href="#skills" class="nav-link text-gray-600 hover:text-gray-900 smooth-transition text-sm font-medium">Skills</a>
                     <a href="#projects" class="nav-link text-gray-600 hover:text-gray-900 smooth-transition text-sm font-medium">Projects</a>
                     <a href="#contact" class="nav-link text-gray-600 hover:text-gray-900 smooth-transition text-sm font-medium">Contact</a>
                 </div>
-                <button id="mobile-menu-btn" class="md:hidden text-gray-600">
+                <button id="mobile-menu-btn" class="md:hidden text-gray-600" aria-label="Toggle menu">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
                     </svg>
@@ -100,6 +99,7 @@
             <div id="mobile-menu" class="hidden md:hidden pb-4 space-y-2">
                 <a href="#home" class="block py-2 text-gray-600 hover:text-gray-900">Home</a>
                 <a href="#about" class="block py-2 text-gray-600 hover:text-gray-900">About</a>
+                <a href="#experience" class="block py-2 text-gray-600 hover:text-gray-900">Experience</a>
                 <a href="#skills" class="block py-2 text-gray-600 hover:text-gray-900">Skills</a>
                 <a href="#projects" class="block py-2 text-gray-600 hover:text-gray-900">Projects</a>
                 <a href="#contact" class="block py-2 text-gray-600 hover:text-gray-900">Contact</a>
@@ -119,13 +119,13 @@
                         Leomar R. <br/>
                         <span class="gradient-text">Montoya</span>
                     </h1>
-                    <p class="text-xl text-gray-600 mb-6">IT Fresh Graduate</p>
+                    <p class="text-xl text-gray-600 mb-6">QA Data Analyst</p>
                     <p class="text-gray-500 mb-8 leading-relaxed max-w-lg text-justify">
-                        Fresh graduate in Information Technology with hands-on experience in creating beautiful, functional websites and user-friendly interfaces, knowledgeable in troubleshooting technical issues and providing solutions.
+                        Information Technology professional with hands-on experience in Quality Assurance, IT support, and web development. Skilled in software testing, bug identification, data validation, troubleshooting, and documentation, with knowledge of HTML, CSS, JavaScript, Bootstrap, and basic database management.
                     </p>
                     <div class="flex flex-wrap gap-4">
-                        <a href="#projects" class="px-6 py-3 bg-gray-900 text-white rounded-lg hover:bg-gray-800 smooth-transition font-medium">
-                            View Projects
+                        <a href="#experience" class="px-6 py-3 bg-gray-900 text-white rounded-lg hover:bg-gray-800 smooth-transition font-medium">
+                            View Experience
                         </a>
                         <a href="#contact" class="px-6 py-3 border-2 border-gray-900 text-gray-900 rounded-lg hover:bg-gray-900 hover:text-white smooth-transition font-medium">
                             Contact Me
@@ -152,24 +152,24 @@
                 <p class="text-blue-600 font-medium mb-2">Get to know me</p>
                 <h2 class="text-4xl font-bold text-gray-900">About Me</h2>
             </div>
-            
+
             <div class="grid md:grid-cols-2 gap-12 items-start">
                 <div class="fade-in">
                     <p class="text-gray-600 mb-6 leading-relaxed text-justify">
-                        Hi there! I'm Leomar, a passionate web developer with a fresh perspective on creating digital experiences. I recently graduated with a degree in Information Technology and have been working on various web projects that helped me develop both my technical and design skills.
+                        Hi there! I'm Leomar, a QA Data Analyst with a background in web development and IT support. I graduated with a degree in Information Technology and have since worked in Quality Assurance, where I perform data validation, system testing, and bug reporting.
                     </p>
                     <p class="text-gray-600 mb-6 leading-relaxed text-justify">
-                        I specialize in building responsive websites using modern technologies like HTML, CSS, JavaScript, and PHP. I'm also familiar with backend development and database management, allowing me to work on full-stack applications.
+                        I'm skilled in functional and regression testing, identifying and escalating bugs, and preparing clear QA reports. My web development experience with HTML, CSS, JavaScript, Bootstrap, and PHP, along with basic database management, helps me understand systems from both the builder's and the tester's point of view.
                     </p>
                     <p class="text-gray-600 leading-relaxed text-justify">
-                        When I'm not coding, I enjoy exploring new technologies, working on personal projects, and continuously improving my skills to stay updated with the latest web development trends.
+                        I work closely with IT and Operations teams to resolve issues quickly, and I enjoy continuously learning new tools and technologies to improve the quality of the products I work on.
                     </p>
                 </div>
-                
-                <div class="fade-in space-y-6">                    
+
+                <div class="fade-in space-y-6">
                     <div class="bg-white p-6 rounded-2xl shadow-sm">
-                        <div class="flex items-center mb-4">
-                            <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mr-4">
+                        <div class="flex items-center">
+                            <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mr-4 flex-shrink-0">
                                 <svg class="w-6 h-6 text-purple-600" fill="currentColor" viewBox="0 0 20 20">
                                     <path d="M10.394 2.08a1 1 0 00-.788 0l-7 3a1 1 0 000 1.84L5.25 8.051a.999.999 0 01.356-.257l4-1.714a1 1 0 11.788 1.838L7.667 9.088l1.94.831a1 1 0 00.787 0l7-3a1 1 0 000-1.838l-7-3zM3.31 9.397L5 10.12v4.102a8.969 8.969 0 00-1.05-.174 1 1 0 01-.89-.89 11.115 11.115 0 01.25-3.762zM9.3 16.573A9.026 9.026 0 007 14.935v-3.957l1.818.78a3 3 0 002.364 0l5.508-2.361a11.026 11.026 0 01.25 3.762 1 1 0 01-.89.89 8.968 8.968 0 00-5.35 2.524 1 1 0 01-1.4 0zM6 18a1 1 0 001-1v-2.065a8.935 8.935 0 00-2-.712V17a1 1 0 001 1z"></path>
                                 </svg>
@@ -180,16 +180,18 @@
                             </div>
                         </div>
                     </div>
-                    
+
                     <div class="bg-white p-6 rounded-2xl shadow-sm">
-                        <div class="flex items-center mb-4">
-                            <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mr-4">
+                        <div class="flex items-center">
+                            <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mr-4 flex-shrink-0">
                                 <svg class="w-6 h-6 text-green-600" fill="currentColor" viewBox="0 0 20 20">
-                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"></path>
+                                    <path fill-rule="evenodd" d="M6 6V5a3 3 0 013-3h2a3 3 0 013 3v1h2a2 2 0 012 2v3.57A22.952 22.952 0 0110 13a22.95 22.95 0 01-8-1.43V8a2 2 0 012-2h2zm2-1a1 1 0 011-1h2a1 1 0 011 1v1H8V5zm1 5a1 1 0 011-1h.01a1 1 0 110 2H10a1 1 0 01-1-1z" clip-rule="evenodd"></path>
+                                    <path d="M2 13.692V16a2 2 0 002 2h12a2 2 0 002-2v-2.308A24.974 24.974 0 0110 15c-2.796 0-5.487-.46-8-1.308z"></path>
                                 </svg>
                             </div>
                             <div>
-                                <div class="text-2xl font-bold text-gray-900">Fresh Graduate</div>
+                                <div class="text-2xl font-bold text-gray-900">QA Data Analyst</div>
+                                <div class="text-gray-600 text-sm">Quality Assurance &middot; Data Validation &middot; Testing</div>
                             </div>
                         </div>
                     </div>
@@ -198,77 +200,169 @@
         </div>
     </section>
 
+    <!-- Experience Section -->
+    <section id="experience" class="py-20 px-6 bg-white">
+        <div class="max-w-6xl mx-auto">
+            <div class="mb-16 fade-in">
+                <p class="text-blue-600 font-medium mb-2">My journey</p>
+                <h2 class="text-4xl font-bold text-gray-900">Professional Experience</h2>
+            </div>
+
+            <div class="timeline space-y-8 max-w-4xl">
+                <!-- La Comfianza -->
+                <div class="relative pl-12 fade-in">
+                    <span class="timeline-dot current"></span>
+                    <div class="bg-white border border-gray-100 p-6 rounded-2xl shadow-sm card-hover smooth-transition">
+                        <div class="flex flex-wrap justify-between items-start gap-2 mb-3">
+                            <div>
+                                <h3 class="text-xl font-semibold text-gray-900">QA Officer</h3>
+                                <p class="text-blue-600 font-medium text-sm">La Comfianza Manpower Services Inc.</p>
+                            </div>
+                            <span class="px-3 py-1 bg-green-50 text-green-700 text-xs rounded-lg font-medium">Feb 2026 – Sep 2026</span>
+                        </div>
+                        <p class="text-gray-600 text-sm leading-relaxed mb-4">
+                            Conducted functional and regression testing, monitored system functionality and transactions, identified and escalated bugs, prepared QA reports, and coordinated with IT and Operations teams for issue resolution and retesting.
+                        </p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-3 py-1 bg-blue-50 text-blue-700 text-xs rounded-lg font-medium">Functional Testing</span>
+                            <span class="px-3 py-1 bg-purple-50 text-purple-700 text-xs rounded-lg font-medium">Regression Testing</span>
+                            <span class="px-3 py-1 bg-red-50 text-red-700 text-xs rounded-lg font-medium">Bug Reporting</span>
+                            <span class="px-3 py-1 bg-green-50 text-green-700 text-xs rounded-lg font-medium">QA Reports</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Xn Solutions -->
+                <div class="relative pl-12 fade-in">
+                    <span class="timeline-dot"></span>
+                    <div class="bg-white border border-gray-100 p-6 rounded-2xl shadow-sm card-hover smooth-transition">
+                        <div class="flex flex-wrap justify-between items-start gap-2 mb-3">
+                            <div>
+                                <h3 class="text-xl font-semibold text-gray-900">QA Data Analyst</h3>
+                                <p class="text-blue-600 font-medium text-sm">Xn Solutions Inc.</p>
+                            </div>
+                            <span class="px-3 py-1 bg-gray-100 text-gray-700 text-xs rounded-lg font-medium">Dec 2025 – Feb 2026</span>
+                        </div>
+                        <p class="text-gray-600 text-sm leading-relaxed mb-4">
+                            Performed data validation and quality checks, analyzed data for errors and discrepancies, conducted system testing, prepared QA reports, and coordinated with teams to resolve identified issues.
+                        </p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-3 py-1 bg-blue-50 text-blue-700 text-xs rounded-lg font-medium">Data Validation</span>
+                            <span class="px-3 py-1 bg-orange-50 text-orange-700 text-xs rounded-lg font-medium">Data Analysis</span>
+                            <span class="px-3 py-1 bg-purple-50 text-purple-700 text-xs rounded-lg font-medium">System Testing</span>
+                            <span class="px-3 py-1 bg-green-50 text-green-700 text-xs rounded-lg font-medium">QA Reports</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Internship -->
+                <div class="relative pl-12 fade-in">
+                    <span class="timeline-dot"></span>
+                    <div class="bg-white border border-gray-100 p-6 rounded-2xl shadow-sm card-hover smooth-transition">
+                        <div class="flex flex-wrap justify-between items-start gap-2 mb-3">
+                            <div>
+                                <h3 class="text-xl font-semibold text-gray-900">Internship – IT Support &amp; Web Developer</h3>
+                                <p class="text-blue-600 font-medium text-sm">Frontier Automotive Marilao Corporation</p>
+                            </div>
+                            <span class="px-3 py-1 bg-gray-100 text-gray-700 text-xs rounded-lg font-medium">Feb 2025 – Apr 2025</span>
+                        </div>
+                        <p class="text-gray-600 text-sm leading-relaxed mb-4">
+                            Provided IT support and designed &amp; developed the official company website (nationwide) using HTML, CSS, JavaScript, and Bootstrap.
+                            <a href="https://famc.com.ph" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:text-blue-700 underline">famc.com.ph</a>
+                        </p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-3 py-1 bg-blue-50 text-blue-700 text-xs rounded-lg font-medium">HTML</span>
+                            <span class="px-3 py-1 bg-purple-50 text-purple-700 text-xs rounded-lg font-medium">CSS</span>
+                            <span class="px-3 py-1 bg-yellow-50 text-yellow-700 text-xs rounded-lg font-medium">JavaScript</span>
+                            <span class="px-3 py-1 bg-pink-50 text-pink-700 text-xs rounded-lg font-medium">Bootstrap</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Skills Section -->
-    <section id="skills" class="py-20 px-6 bg-white">
+    <section id="skills" class="py-20 px-6 bg-gray-50">
         <div class="max-w-6xl mx-auto">
             <div class="mb-16 fade-in">
                 <p class="text-blue-600 font-medium mb-2">What I do</p>
                 <h2 class="text-4xl font-bold text-gray-900">Skills & Expertise</h2>
             </div>
-            
+
             <!-- Core Technical Skills -->
-            <div class="mb-20 animate-fade-in-up">
+            <div class="mb-20">
                 <div class="text-center mb-12">
                     <h3 class="text-4xl font-bold gradient-text mb-3">Core Technical Skills</h3>
                     <div class="h-1 w-24 bg-gradient-to-r from-blue-600 to-purple-600 mx-auto rounded-full"></div>
                 </div>
-                
-                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- QA & Testing -->
+                    <div class="bg-gradient-to-br from-teal-500 to-cyan-700 p-8 rounded-2xl text-white shadow-xl">
+                        <div class="w-16 h-16 bg-white/20 backdrop-blur-sm rounded-2xl flex items-center justify-center mb-6">
+                            <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                            </svg>
+                        </div>
+                        <h4 class="text-xl font-bold mb-4">QA & Testing</h4>
+                        <div class="space-y-2">
+                            <div class="flex items-center gap-2"><div class="w-2 h-2 bg-white rounded-full"></div><span class="text-teal-50">Software Testing</span></div>
+                            <div class="flex items-center gap-2"><div class="w-2 h-2 bg-white rounded-full"></div><span class="text-teal-50">Functional & Regression Testing</span></div>
+                            <div class="flex items-center gap-2"><div class="w-2 h-2 bg-white rounded-full"></div><span class="text-teal-50">Bug Identification & Reporting</span></div>
+                            <div class="flex items-center gap-2"><div class="w-2 h-2 bg-white rounded-full"></div><span class="text-teal-50">QA Reports & Documentation</span></div>
+                        </div>
+                    </div>
+
+                    <!-- Data Validation -->
+                    <div class="bg-gradient-to-br from-indigo-500 to-indigo-700 p-8 rounded-2xl text-white shadow-xl">
+                        <div class="w-16 h-16 bg-white/20 backdrop-blur-sm rounded-2xl flex items-center justify-center mb-6">
+                            <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M2 11a1 1 0 011-1h2a1 1 0 011 1v5a1 1 0 01-1 1H3a1 1 0 01-1-1v-5zM8 7a1 1 0 011-1h2a1 1 0 011 1v9a1 1 0 01-1 1H9a1 1 0 01-1-1V7zM14 4a1 1 0 011-1h2a1 1 0 011 1v12a1 1 0 01-1 1h-2a1 1 0 01-1-1V4z"/>
+                            </svg>
+                        </div>
+                        <h4 class="text-xl font-bold mb-4">Data Validation & Analysis</h4>
+                        <div class="space-y-2">
+                            <div class="flex items-center gap-2"><div class="w-2 h-2 bg-white rounded-full"></div><span class="text-indigo-50">Data Validation</span></div>
+                            <div class="flex items-center gap-2"><div class="w-2 h-2 bg-white rounded-full"></div><span class="text-indigo-50">Quality Checks</span></div>
+                            <div class="flex items-center gap-2"><div class="w-2 h-2 bg-white rounded-full"></div><span class="text-indigo-50">Error & Discrepancy Analysis</span></div>
+                        </div>
+                    </div>
+
                     <!-- Programming Languages -->
-                    <div class="skill-card bg-gradient-to-br from-blue-500 to-blue-700 p-8 rounded-2xl text-white shadow-xl animate-fade-in-up delay-100">
-                        <div class="icon-wrapper w-16 h-16 bg-white/20 backdrop-blur-sm rounded-2xl flex items-center justify-center mb-6 animate-float">
+                    <div class="bg-gradient-to-br from-blue-500 to-blue-700 p-8 rounded-2xl text-white shadow-xl">
+                        <div class="w-16 h-16 bg-white/20 backdrop-blur-sm rounded-2xl flex items-center justify-center mb-6">
                             <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
                                 <path fill-rule="evenodd" d="M12.316 3.051a1 1 0 01.633 1.265l-4 12a1 1 0 11-1.898-.632l4-12a1 1 0 011.265-.633zM5.707 6.293a1 1 0 010 1.414L3.414 10l2.293 2.293a1 1 0 11-1.414 1.414l-3-3a1 1 0 010-1.414l3-3a1 1 0 011.414 0zm8.586 0a1 1 0 011.414 0l3 3a1 1 0 010 1.414l-3 3a1 1 0 11-1.414-1.414L16.586 10l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd"/>
                             </svg>
                         </div>
                         <h4 class="text-xl font-bold mb-4">Programming Languages</h4>
                         <div class="space-y-2">
-                            <div class="flex items-center gap-2">
-                                <div class="w-2 h-2 bg-white rounded-full"></div>
-                                <span class="text-blue-50">C++</span>
-                            </div>
-                            <div class="flex items-center gap-2">
-                                <div class="w-2 h-2 bg-white rounded-full"></div>
-                                <span class="text-blue-50">Python</span>
-                            </div>
-                            <div class="flex items-center gap-2">
-                                <div class="w-2 h-2 bg-white rounded-full"></div>
-                                <span class="text-blue-50">C#</span>
-                            </div>
+                            <div class="flex items-center gap-2"><div class="w-2 h-2 bg-white rounded-full"></div><span class="text-blue-50">C++</span></div>
+                            <div class="flex items-center gap-2"><div class="w-2 h-2 bg-white rounded-full"></div><span class="text-blue-50">Python</span></div>
+                            <div class="flex items-center gap-2"><div class="w-2 h-2 bg-white rounded-full"></div><span class="text-blue-50">C#</span></div>
                         </div>
                     </div>
 
                     <!-- Web Development -->
-                    <div class="skill-card bg-gradient-to-br from-green-500 to-emerald-700 p-8 rounded-2xl text-white shadow-xl animate-fade-in-up delay-200">
-                        <div class="icon-wrapper w-16 h-16 bg-white/20 backdrop-blur-sm rounded-2xl flex items-center justify-center mb-6 animate-float" style="animation-delay: 0.5s;">
+                    <div class="bg-gradient-to-br from-green-500 to-emerald-700 p-8 rounded-2xl text-white shadow-xl">
+                        <div class="w-16 h-16 bg-white/20 backdrop-blur-sm rounded-2xl flex items-center justify-center mb-6">
                             <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
                                 <path d="M3 4a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V4zM3 10a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H4a1 1 0 01-1-1v-6zM14 9a1 1 0 00-1 1v6a1 1 0 001 1h2a1 1 0 001-1v-6a1 1 0 00-1-1h-2z"/>
                             </svg>
                         </div>
                         <h4 class="text-xl font-bold mb-4">Web Development</h4>
                         <div class="space-y-2">
-                            <div class="flex items-center gap-2">
-                                <div class="w-2 h-2 bg-white rounded-full"></div>
-                                <span class="text-green-50">HTML / CSS / JS</span>
-                            </div>
-                            <div class="flex items-center gap-2">
-                                <div class="w-2 h-2 bg-white rounded-full"></div>
-                                <span class="text-green-50">React</span>
-                            </div>
-                            <div class="flex items-center gap-2">
-                                <div class="w-2 h-2 bg-white rounded-full"></div>
-                                <span class="text-green-50">Responsive Design</span>
-                            </div>
-                            <div class="flex items-center gap-2">
-                                <div class="w-2 h-2 bg-white rounded-full"></div>
-                                <span class="text-green-50">Bootstrap / Tailwind</span>
-                            </div>
+                            <div class="flex items-center gap-2"><div class="w-2 h-2 bg-white rounded-full"></div><span class="text-green-50">HTML / CSS / JS</span></div>
+                            <div class="flex items-center gap-2"><div class="w-2 h-2 bg-white rounded-full"></div><span class="text-green-50">React</span></div>
+                            <div class="flex items-center gap-2"><div class="w-2 h-2 bg-white rounded-full"></div><span class="text-green-50">Responsive Design</span></div>
+                            <div class="flex items-center gap-2"><div class="w-2 h-2 bg-white rounded-full"></div><span class="text-green-50">Bootstrap / Tailwind</span></div>
                         </div>
                     </div>
 
                     <!-- Database Management -->
-                    <div class="skill-card bg-gradient-to-br from-purple-500 to-purple-700 p-8 rounded-2xl text-white shadow-xl animate-fade-in-up delay-300">
-                        <div class="icon-wrapper w-16 h-16 bg-white/20 backdrop-blur-sm rounded-2xl flex items-center justify-center mb-6 animate-float" style="animation-delay: 1s;">
+                    <div class="bg-gradient-to-br from-purple-500 to-purple-700 p-8 rounded-2xl text-white shadow-xl">
+                        <div class="w-16 h-16 bg-white/20 backdrop-blur-sm rounded-2xl flex items-center justify-center mb-6">
                             <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
                                 <path d="M3 12v3c0 1.657 3.134 3 7 3s7-1.343 7-3v-3c0 1.657-3.134 3-7 3s-7-1.343-7-3z"/>
                                 <path d="M3 7v3c0 1.657 3.134 3 7 3s7-1.343 7-3V7c0 1.657-3.134 3-7 3S3 8.657 3 7z"/>
@@ -277,80 +371,50 @@
                         </div>
                         <h4 class="text-xl font-bold mb-4">Database Management</h4>
                         <div class="space-y-2">
-                            <div class="flex items-center gap-2">
-                                <div class="w-2 h-2 bg-white rounded-full"></div>
-                                <span class="text-purple-50">MySQL</span>
-                            </div>
-                            <div class="flex items-center gap-2">
-                                <div class="w-2 h-2 bg-white rounded-full"></div>
-                                <span class="text-purple-50">NoSQL</span>
-                            </div>
-                            <div class="flex items-center gap-2">
-                                <div class="w-2 h-2 bg-white rounded-full"></div>
-                                <span class="text-purple-50">XAMPP</span>
-                            </div>
+                            <div class="flex items-center gap-2"><div class="w-2 h-2 bg-white rounded-full"></div><span class="text-purple-50">MySQL</span></div>
+                            <div class="flex items-center gap-2"><div class="w-2 h-2 bg-white rounded-full"></div><span class="text-purple-50">NoSQL</span></div>
+                            <div class="flex items-center gap-2"><div class="w-2 h-2 bg-white rounded-full"></div><span class="text-purple-50">XAMPP</span></div>
                         </div>
                     </div>
 
                     <!-- OS & System Administration -->
-                    <div class="skill-card bg-gradient-to-br from-orange-500 to-red-600 p-8 rounded-2xl text-white shadow-xl animate-fade-in-up delay-400">
-                        <div class="icon-wrapper w-16 h-16 bg-white/20 backdrop-blur-sm rounded-2xl flex items-center justify-center mb-6 animate-float" style="animation-delay: 1.5s;">
+                    <div class="bg-gradient-to-br from-orange-500 to-red-600 p-8 rounded-2xl text-white shadow-xl">
+                        <div class="w-16 h-16 bg-white/20 backdrop-blur-sm rounded-2xl flex items-center justify-center mb-6">
                             <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
                                 <path fill-rule="evenodd" d="M3 5a2 2 0 012-2h10a2 2 0 012 2v8a2 2 0 01-2 2h-2.22l.123.489.804.804A1 1 0 0113 18H7a1 1 0 01-.707-1.707l.804-.804L7.22 15H5a2 2 0 01-2-2V5zm5.771 7H5V5h10v7H8.771z" clip-rule="evenodd"/>
                             </svg>
                         </div>
-                        <h4 class="text-xl font-bold mb-4">OS & System Admin</h4>
+                        <h4 class="text-xl font-bold mb-4">IT Support & System Admin</h4>
                         <div class="space-y-2">
-                            <div class="flex items-center gap-2">
-                                <div class="w-2 h-2 bg-white rounded-full"></div>
-                                <span class="text-orange-50">Windows</span>
-                            </div>
-                            <div class="flex items-center gap-2">
-                                <div class="w-2 h-2 bg-white rounded-full"></div>
-                                <span class="text-orange-50">Linux</span>
-                            </div>
-                            <div class="flex items-center gap-2">
-                                <div class="w-2 h-2 bg-white rounded-full"></div>
-                                <span class="text-orange-50">Server Management</span>
-                            </div>
+                            <div class="flex items-center gap-2"><div class="w-2 h-2 bg-white rounded-full"></div><span class="text-orange-50">Troubleshooting</span></div>
+                            <div class="flex items-center gap-2"><div class="w-2 h-2 bg-white rounded-full"></div><span class="text-orange-50">Windows / Linux</span></div>
+                            <div class="flex items-center gap-2"><div class="w-2 h-2 bg-white rounded-full"></div><span class="text-orange-50">Server Management</span></div>
                         </div>
                     </div>
                 </div>
             </div>
 
-        <!-- Software & Tools Expertise -->
-            <div class="mb-20 animate-fade-in-up">
+            <!-- Software & Tools Expertise -->
+            <div class="mb-20">
                 <div class="text-center mb-12">
                     <h3 class="text-4xl font-bold gradient-text mb-3">Software & Tools Expertise</h3>
                     <div class="h-1 w-24 bg-gradient-to-r from-pink-600 to-rose-600 mx-auto rounded-full"></div>
                 </div>
-                
+
                 <div class="flex justify-center">
-                    <div class="skill-card bg-gradient-to-br from-pink-500 via-rose-500 to-pink-600 p-8 rounded-2xl text-white shadow-xl max-w-md w-full">
+                    <div class="bg-gradient-to-br from-pink-500 via-rose-500 to-pink-600 p-8 rounded-2xl text-white shadow-xl max-w-md w-full">
                         <div class="flex flex-col items-center text-center">
-                            <div class="icon-wrapper w-16 h-16 bg-white/20 backdrop-blur-sm rounded-2xl flex items-center justify-center mb-6 animate-float" style="animation-delay: 0.3s;">
+                            <div class="w-16 h-16 bg-white/20 backdrop-blur-sm rounded-2xl flex items-center justify-center mb-6">
                                 <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
                                     <path d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zm12 12H4l4-8 3 6 2-4 3 6z"/>
                                 </svg>
                             </div>
                             <h4 class="text-xl font-bold mb-4">Design & UI/UX</h4>
                             <div class="space-y-2 w-full">
-                                <div class="flex items-center gap-2">
-                                    <div class="w-2 h-2 bg-white rounded-full"></div>
-                                    <span class="text-pink-50">Adobe Photoshop</span>
-                                </div>
-                                <div class="flex items-center gap-2">
-                                    <div class="w-2 h-2 bg-white rounded-full"></div>
-                                    <span class="text-pink-50">Figma</span>
-                                </div>
-                                <div class="flex items-center gap-2">
-                                    <div class="w-2 h-2 bg-white rounded-full"></div>
-                                    <span class="text-pink-50">UI/UX Design</span>
-                                </div>
-                                <div class="flex items-center gap-2">
-                                    <div class="w-2 h-2 bg-white rounded-full"></div>
-                                    <span class="text-pink-50">User Research</span>
-                                </div>
+                                <div class="flex items-center gap-2"><div class="w-2 h-2 bg-white rounded-full"></div><span class="text-pink-50">Adobe Photoshop</span></div>
+                                <div class="flex items-center gap-2"><div class="w-2 h-2 bg-white rounded-full"></div><span class="text-pink-50">Figma</span></div>
+                                <div class="flex items-center gap-2"><div class="w-2 h-2 bg-white rounded-full"></div><span class="text-pink-50">UI/UX Design</span></div>
+                                <div class="flex items-center gap-2"><div class="w-2 h-2 bg-white rounded-full"></div><span class="text-pink-50">User Research</span></div>
                             </div>
                         </div>
                     </div>
@@ -358,15 +422,15 @@
             </div>
 
             <!-- Soft Skills -->
-            <div class="animate-fade-in-up">
+            <div>
                 <div class="text-center mb-12">
                     <h3 class="text-4xl font-bold gradient-text mb-3">Soft Skills</h3>
                     <div class="h-1 w-24 bg-gradient-to-r from-indigo-600 to-blue-600 mx-auto rounded-full"></div>
                 </div>
-                
+
                 <div class="bg-white/80 backdrop-blur-lg p-10 rounded-3xl shadow-2xl">
                     <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                        <div class="soft-skill-card flex items-start gap-4 p-5 rounded-xl bg-gradient-to-br from-blue-50 to-blue-100">
+                        <div class="flex items-start gap-4 p-5 rounded-xl bg-gradient-to-br from-blue-50 to-blue-100">
                             <div class="w-12 h-12 bg-gradient-to-br from-blue-600 to-blue-700 rounded-xl flex items-center justify-center flex-shrink-0 shadow-lg">
                                 <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
                                     <path fill-rule="evenodd" d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z" clip-rule="evenodd"/>
@@ -378,7 +442,7 @@
                             </div>
                         </div>
 
-                        <div class="soft-skill-card flex items-start gap-4 p-5 rounded-xl bg-gradient-to-br from-green-50 to-green-100">
+                        <div class="flex items-start gap-4 p-5 rounded-xl bg-gradient-to-br from-green-50 to-green-100">
                             <div class="w-12 h-12 bg-gradient-to-br from-green-600 to-green-700 rounded-xl flex items-center justify-center flex-shrink-0 shadow-lg">
                                 <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
                                     <path d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z"/>
@@ -387,11 +451,11 @@
                             </div>
                             <div>
                                 <h4 class="font-bold text-gray-900 mb-2 text-lg">Analytical Thinking</h4>
-                                <p class="text-sm text-gray-600">Data-driven decisions and logical approach</p>
+                                <p class="text-sm text-gray-600">Detail-oriented, data-driven and logical approach</p>
                             </div>
                         </div>
 
-                        <div class="soft-skill-card flex items-start gap-4 p-5 rounded-xl bg-gradient-to-br from-purple-50 to-purple-100">
+                        <div class="flex items-start gap-4 p-5 rounded-xl bg-gradient-to-br from-purple-50 to-purple-100">
                             <div class="w-12 h-12 bg-gradient-to-br from-purple-600 to-purple-700 rounded-xl flex items-center justify-center flex-shrink-0 shadow-lg">
                                 <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
                                     <path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3zM6 8a2 2 0 11-4 0 2 2 0 014 0zM16 18v-3a5.972 5.972 0 00-.75-2.906A3.005 3.005 0 0119 15v3h-3zM4.75 12.094A5.973 5.973 0 004 15v3H1v-3a3 3 0 013.75-2.906z"/>
@@ -399,11 +463,11 @@
                             </div>
                             <div>
                                 <h4 class="font-bold text-gray-900 mb-2 text-lg">Team Collaboration</h4>
-                                <p class="text-sm text-gray-600">Effective teamwork and project coordination</p>
+                                <p class="text-sm text-gray-600">Works well with IT and Operations teams</p>
                             </div>
                         </div>
 
-                        <div class="soft-skill-card flex items-start gap-4 p-5 rounded-xl bg-gradient-to-br from-orange-50 to-orange-100">
+                        <div class="flex items-start gap-4 p-5 rounded-xl bg-gradient-to-br from-orange-50 to-orange-100">
                             <div class="w-12 h-12 bg-gradient-to-br from-orange-600 to-orange-700 rounded-xl flex items-center justify-center flex-shrink-0 shadow-lg">
                                 <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
                                     <path fill-rule="evenodd" d="M4 2a1 1 0 011 1v2.101a7.002 7.002 0 0111.601 2.566 1 1 0 11-1.885.666A5.002 5.002 0 005.999 7H9a1 1 0 010 2H4a1 1 0 01-1-1V3a1 1 0 011-1zm.008 9.057a1 1 0 011.276.61A5.002 5.002 0 0014.001 13H11a1 1 0 110-2h5a1 1 0 011 1v5a1 1 0 11-2 0v-2.101a7.002 7.002 0 01-11.601-2.566 1 1 0 01.61-1.276z" clip-rule="evenodd"/>
@@ -415,7 +479,7 @@
                             </div>
                         </div>
 
-                        <div class="soft-skill-card flex items-start gap-4 p-5 rounded-xl bg-gradient-to-br from-pink-50 to-pink-100">
+                        <div class="flex items-start gap-4 p-5 rounded-xl bg-gradient-to-br from-pink-50 to-pink-100">
                             <div class="w-12 h-12 bg-gradient-to-br from-pink-600 to-pink-700 rounded-xl flex items-center justify-center flex-shrink-0 shadow-lg">
                                 <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
                                     <path fill-rule="evenodd" d="M18 10c0 3.866-3.582 7-8 7a8.841 8.841 0 01-4.083-.98L2 17l1.338-3.123C2.493 12.767 2 11.434 2 10c0-3.866 3.582-7 8-7s8 3.134 8 7zM7 9H5v2h2V9zm8 0h-2v2h2V9zM9 9h2v2H9V9z" clip-rule="evenodd"/>
@@ -423,11 +487,11 @@
                             </div>
                             <div>
                                 <h4 class="font-bold text-gray-900 mb-2 text-lg">Communication</h4>
-                                <p class="text-sm text-gray-600">Clear technical and non-technical communication</p>
+                                <p class="text-sm text-gray-600">Clear bug reports, documentation and updates</p>
                             </div>
                         </div>
 
-                        <div class="soft-skill-card flex items-start gap-4 p-5 rounded-xl bg-gradient-to-br from-indigo-50 to-indigo-100">
+                        <div class="flex items-start gap-4 p-5 rounded-xl bg-gradient-to-br from-indigo-50 to-indigo-100">
                             <div class="w-12 h-12 bg-gradient-to-br from-indigo-600 to-indigo-700 rounded-xl flex items-center justify-center flex-shrink-0 shadow-lg">
                                 <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
                                     <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"/>
@@ -445,18 +509,17 @@
     </section>
 
     <!-- Projects Section -->
-    <section id="projects" class="py-20 px-6 bg-gray-50">
+    <section id="projects" class="py-20 px-6 bg-white">
         <div class="max-w-6xl mx-auto">
             <div class="mb-16 fade-in">
                 <p class="text-blue-600 font-medium mb-2">My work</p>
                 <h2 class="text-4xl font-bold text-gray-900">Featured Projects</h2>
             </div>
-            
+
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <div class="bg-white rounded-2xl overflow-hidden shadow-sm card-hover smooth-transition fade-in">
+                <div class="bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100 card-hover smooth-transition fade-in">
                     <div class="h-48 rounded-2xl overflow-hidden">
-                        <img src="img/famc.png" alt="Descriptive alt text"
-                            class="w-full h-full object-cover">
+                        <img src="img/famc.png" alt="Frontier Automotive Marilao Corporation website" class="w-full h-full object-cover">
                     </div>
                     <div class="p-6">
                         <h3 class="text-lg font-semibold text-gray-900 mb-2">Car Dealership Website</h3>
@@ -468,19 +531,16 @@
                             <span class="px-3 py-1 bg-pink-50 text-pink-700 text-xs rounded-lg font-medium">Bootstrap</span>
                             <span class="px-3 py-1 bg-red-50 text-red-700 text-xs rounded-lg font-medium">PHP</span>
                         </div>
-                        <a href="https://famc.com.ph" target="_blank" class="text-blue-600 hover:text-blue-700 font-medium text-sm smooth-transition inline-flex items-center">
-                            View Website 
-                            <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                            </svg>
+                        <a href="https://famc.com.ph" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:text-blue-700 font-medium text-sm smooth-transition inline-flex items-center">
+                            View Website
+                            <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
                         </a>
                     </div>
                 </div>
 
-                <div class="bg-white rounded-2xl overflow-hidden shadow-sm card-hover smooth-transition fade-in">
+                <div class="bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100 card-hover smooth-transition fade-in">
                     <div class="h-48 rounded-2xl overflow-hidden">
-                        <img src="img/logistiq.png" alt="Descriptive alt text"
-                            class="w-full h-full object-cover">
+                        <img src="img/logistiq.png" alt="Logistiq warehouse management system" class="w-full h-full object-cover">
                     </div>
                     <div class="p-6">
                         <h3 class="text-lg font-semibold text-gray-900 mb-2">Logistiq: Warehouse Management</h3>
@@ -491,19 +551,16 @@
                             <span class="px-3 py-1 bg-purple-50 text-purple-700 text-xs rounded-lg font-medium">CSS</span>
                             <span class="px-3 py-1 bg-red-50 text-red-700 text-xs rounded-lg font-medium">PHP</span>
                         </div>
-                        <a href="https://drive.google.com/drive/folders/1XzulyGOnNFF0buY_fWvcfrCkNv7PSwXG?usp=sharing" target="_blank" class="text-blue-600 hover:text-blue-700 font-medium text-sm smooth-transition inline-flex items-center">
-                            View Project Link 
-                            <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                            </svg>
+                        <a href="https://drive.google.com/drive/folders/1XzulyGOnNFF0buY_fWvcfrCkNv7PSwXG?usp=sharing" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:text-blue-700 font-medium text-sm smooth-transition inline-flex items-center">
+                            View Project Link
+                            <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
                         </a>
                     </div>
                 </div>
 
-                <div class="bg-white rounded-2xl overflow-hidden shadow-sm card-hover smooth-transition fade-in">
+                <div class="bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100 card-hover smooth-transition fade-in">
                     <div class="h-48 rounded-2xl overflow-hidden">
-                        <img src="img/reviu.png" alt="Descriptive alt text"
-                            class="w-full h-full object-cover">
+                        <img src="img/reviu.png" alt="Reviu grade result system" class="w-full h-full object-cover">
                     </div>
                     <div class="p-6">
                         <h3 class="text-lg font-semibold text-gray-900 mb-2">Reviu: Grade Result System</h3>
@@ -514,19 +571,16 @@
                             <span class="px-3 py-1 bg-purple-50 text-purple-700 text-xs rounded-lg font-medium">CSS</span>
                             <span class="px-3 py-1 bg-red-50 text-red-700 text-xs rounded-lg font-medium">PHP</span>
                         </div>
-                        <a href="https://drive.google.com/drive/folders/1TJAviljHPk2_T61oDms8CRzGZJSkcPFq?usp=sharing" target="_blank" class="text-blue-600 hover:text-blue-700 font-medium text-sm smooth-transition inline-flex items-center">
-                            View Project Link  
-                            <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                            </svg>
+                        <a href="https://drive.google.com/drive/folders/1TJAviljHPk2_T61oDms8CRzGZJSkcPFq?usp=sharing" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:text-blue-700 font-medium text-sm smooth-transition inline-flex items-center">
+                            View Project Link
+                            <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
                         </a>
                     </div>
                 </div>
 
-                <div class="bg-white rounded-2xl overflow-hidden shadow-sm card-hover smooth-transition fade-in">
+                <div class="bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100 card-hover smooth-transition fade-in">
                     <div class="h-48 rounded-2xl overflow-hidden">
-                        <img src="img/inx10.png" alt="Descriptive alt text"
-                            class="w-full h-full object-cover">
+                        <img src="img/inx10.png" alt="INX10 HR management system" class="w-full h-full object-cover">
                     </div>
                     <div class="p-6">
                         <h3 class="text-lg font-semibold text-gray-900 mb-2">INX10: HR Management System</h3>
@@ -539,19 +593,16 @@
                             <span class="px-3 py-1 bg-green-50 text-green-700 text-xs rounded-lg font-medium">Node.js</span>
                             <span class="px-3 py-1 bg-orange-50 text-orange-700 text-xs rounded-lg font-medium">SQL</span>
                         </div>
-                        <a href="https://drive.google.com/drive/folders/1mn3-MUYUUEUok1PzlmtPgHcB0c6KDhI6?usp=sharing" target="_blank" class="text-blue-600 hover:text-blue-700 font-medium text-sm smooth-transition inline-flex items-center">
-                            View Project Link 
-                            <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                            </svg>
+                        <a href="https://drive.google.com/drive/folders/1mn3-MUYUUEUok1PzlmtPgHcB0c6KDhI6?usp=sharing" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:text-blue-700 font-medium text-sm smooth-transition inline-flex items-center">
+                            View Project Link
+                            <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
                         </a>
                     </div>
                 </div>
 
-                <div class="bg-white rounded-2xl overflow-hidden shadow-sm card-hover smooth-transition fade-in">
+                <div class="bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100 card-hover smooth-transition fade-in">
                     <div class="h-48 rounded-2xl overflow-hidden">
-                        <img src="img/posi.png" alt="Descriptive alt text"
-                            class="w-full h-full object-cover">
+                        <img src="img/posi.png" alt="Point of sales with inventory system" class="w-full h-full object-cover">
                     </div>
                     <div class="p-6">
                         <h3 class="text-lg font-semibold text-gray-900 mb-2">Point of Sales with Inventory System</h3>
@@ -561,11 +612,9 @@
                             <span class="px-3 py-1 bg-purple-50 text-purple-700 text-xs rounded-lg font-medium">.Net</span>
                             <span class="px-3 py-1 bg-orange-50 text-orange-700 text-xs rounded-lg font-medium">SQL</span>
                         </div>
-                        <a href="https://drive.google.com/drive/folders/1E0bC2M9xnVwuV2X-wWd8qAliO2dogVsn?usp=sharing" target="_blank" class="text-blue-600 hover:text-blue-700 font-medium text-sm smooth-transition inline-flex items-center">
-                            View Project Link 
-                            <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                            </svg>
+                        <a href="https://drive.google.com/drive/folders/1E0bC2M9xnVwuV2X-wWd8qAliO2dogVsn?usp=sharing" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:text-blue-700 font-medium text-sm smooth-transition inline-flex items-center">
+                            View Project Link
+                            <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
                         </a>
                     </div>
                 </div>
@@ -574,16 +623,16 @@
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="py-20 px-6 bg-white">
+    <section id="contact" class="py-20 px-6 bg-gray-50">
         <div class="max-w-6xl mx-auto">
             <div class="mb-16 fade-in">
                 <p class="text-blue-600 font-medium mb-2">Let's talk</p>
                 <h2 class="text-4xl font-bold text-gray-900">Get In Touch</h2>
-                    <p class="text-gray-600 mb-16 leading-relaxed text-left text-lg">
-                        I'm always open to discussing new projects, creative ideas, or opportunities to be part of your vision. Feel free to reach out!
-                    </p>  
+                <p class="text-gray-600 leading-relaxed text-left text-lg mt-4">
+                    I'm always open to discussing new projects, QA opportunities, or ways to be part of your team. Feel free to reach out!
+                </p>
             </div>
-            
+
             <div class="max-w-4xl mx-auto">
                 <div class="fade-in">
                     <div class="grid md:grid-cols-3 gap-8">
@@ -599,7 +648,7 @@
                                 <a href="mailto:leomarmontoya02@gmail.com" class="text-gray-600 hover:text-blue-600 smooth-transition text-sm break-all">leomarmontoya02@gmail.com</a>
                             </div>
                         </div>
-                        
+
                         <div class="bg-gradient-to-br from-green-50 to-green-100 p-8 rounded-2xl text-center card-hover smooth-transition">
                             <div class="w-16 h-16 bg-green-600 rounded-2xl flex items-center justify-center mx-auto mb-6">
                                 <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
@@ -612,7 +661,7 @@
                                 <div class="text-gray-600 text-sm">+63 945-415-2696</div>
                             </div>
                         </div>
-                        
+
                         <div class="bg-gradient-to-br from-purple-50 to-purple-100 p-8 rounded-2xl text-center card-hover smooth-transition">
                             <div class="w-16 h-16 bg-purple-600 rounded-2xl flex items-center justify-center mx-auto mb-6">
                                 <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
@@ -626,26 +675,26 @@
                             </div>
                         </div>
                     </div>
-                    
+
                     <div class="mt-12 text-center">
                         <div class="font-semibold text-gray-900 mb-6 text-lg">Connect with me</div>
                         <div class="flex justify-center space-x-4">
                             <!-- Facebook -->
-                            <a href="https://www.facebook.com/Montoya.Leomar/" target="_blank" rel="noopener noreferrer" class="w-14 h-14 bg-gray-100 hover:bg-blue-600 text-gray-600 hover:text-white rounded-2xl flex items-center justify-center smooth-transition">
+                            <a href="https://www.facebook.com/Montoya.Leomar/" target="_blank" rel="noopener noreferrer" aria-label="Facebook" class="w-14 h-14 bg-gray-100 hover:bg-blue-600 text-gray-600 hover:text-white rounded-2xl flex items-center justify-center smooth-transition">
                                 <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
                                     <path d="M22.675 0h-21.35C.597 0 0 .597 0 1.326v21.348C0 23.403.597 24 1.326 24h11.494v-9.294H9.691v-3.622h3.129V8.413c0-3.1 1.894-4.788 4.659-4.788 1.325 0 2.463.099 2.795.143v3.24l-1.918.001c-1.504 0-1.795.715-1.795 1.763v2.312h3.587l-.467 3.622h-3.12V24h6.116C23.403 24 24 23.403 24 22.674V1.326C24 .597 23.403 0 22.675 0z"/>
                                 </svg>
                             </a>
 
                             <!-- LinkedIn -->
-                            <a href="https://www.linkedin.com/in/leomar-montoya-192939278/" target="_blank" rel="noopener noreferrer" class="w-14 h-14 bg-gray-100 hover:bg-blue-700 text-gray-600 hover:text-white rounded-2xl flex items-center justify-center smooth-transition">
+                            <a href="https://www.linkedin.com/in/leomar-montoya-192939278/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" class="w-14 h-14 bg-gray-100 hover:bg-blue-700 text-gray-600 hover:text-white rounded-2xl flex items-center justify-center smooth-transition">
                                 <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
                                     <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
                                 </svg>
                             </a>
 
                             <!-- GitHub -->
-                            <a href="https://github.com/LeomarMontoya" target="_blank" rel="noopener noreferrer" class="w-14 h-14 bg-gray-100 hover:bg-gray-900 text-gray-600 hover:text-white rounded-2xl flex items-center justify-center smooth-transition">
+                            <a href="https://github.com/LeomarMontoya" target="_blank" rel="noopener noreferrer" aria-label="GitHub" class="w-14 h-14 bg-gray-100 hover:bg-gray-900 text-gray-600 hover:text-white rounded-2xl flex items-center justify-center smooth-transition">
                                 <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
                                     <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
                                 </svg>
@@ -660,32 +709,26 @@
     <!-- Footer -->
     <footer class="bg-gray-900 text-white py-8 px-6">
         <div class="max-w-6xl mx-auto text-center">
-            <p class="text-gray-400">&copy; 2025 Leomar R. Montoya. All rights reserved.</p>
+            <p class="text-gray-400">&copy; 2026 Leomar R. Montoya. All rights reserved.</p>
         </div>
     </footer>
 
     <script>
         // Profile image slideshow on hover
         const profileImg = document.getElementById('profile-img');
-        
-        // List of images for the slideshow
         const images = ['img/me.png', 'img/me2.png', 'img/me3.png'];
-        
-        // Variables for tracking
         let index = 0;
         let slideshowInterval;
-        
+
         if (profileImg) {
-            // Mouse enters — start slideshow
             profileImg.addEventListener('mouseenter', () => {
-                clearInterval(slideshowInterval); // clear just in case
+                clearInterval(slideshowInterval);
                 slideshowInterval = setInterval(() => {
                     index = (index + 1) % images.length;
                     profileImg.src = images[index];
-                }, 800); // change image every 0.8 seconds
+                }, 800);
             });
-        
-            // Mouse leaves — stop slideshow and reset
+
             profileImg.addEventListener('mouseleave', () => {
                 clearInterval(slideshowInterval);
                 index = 0;
@@ -693,11 +736,10 @@
             });
         }
 
-
         // Mobile menu toggle
         const mobileMenuBtn = document.getElementById('mobile-menu-btn');
         const mobileMenu = document.getElementById('mobile-menu');
-        
+
         mobileMenuBtn.addEventListener('click', () => {
             mobileMenu.classList.toggle('hidden');
         });
@@ -708,56 +750,28 @@
                 e.preventDefault();
                 const target = document.querySelector(this.getAttribute('href'));
                 if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
                     mobileMenu.classList.add('hidden');
                 }
             });
         });
 
         // Fade in animation
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -100px 0px'
-        };
-
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('visible');
                 }
             });
-        }, observerOptions);
+        }, { threshold: 0.1, rootMargin: '0px 0px -100px 0px' });
 
-        document.querySelectorAll('.fade-in').forEach(el => {
-            observer.observe(el);
-        });
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 
-        // Skill progress animation
-        const skillObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const progressBars = entry.target.querySelectorAll('.skill-progress');
-                    progressBars.forEach(bar => {
-                        const width = bar.getAttribute('data-width');
-                        bar.style.width = width + '%';
-                        bar.classList.add('animate');
-                    });
-                }
-            });
-        }, { threshold: 0.5 });
-
-        document.querySelectorAll('#skills .fade-in').forEach(el => {
-            skillObserver.observe(el);
-        });
-        
         // Active nav highlighting
         window.addEventListener('scroll', () => {
             const sections = document.querySelectorAll('section[id]');
             const navLinks = document.querySelectorAll('nav a[href^="#"]');
-            
+
             let current = '';
             sections.forEach(section => {
                 const sectionTop = section.offsetTop - 100;
@@ -765,7 +779,7 @@
                     current = section.getAttribute('id');
                 }
             });
-            
+
             navLinks.forEach(link => {
                 link.classList.remove('active');
                 if (link.getAttribute('href') === `#${current}`) {
@@ -775,24 +789,4 @@
         });
     </script>
 </body>
-
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
